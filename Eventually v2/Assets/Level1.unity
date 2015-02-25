@@ -382,7 +382,7 @@ GameObject:
   - 102: {fileID: 171562060}
   - 114: {fileID: 171562059}
   m_Layer: 0
-  m_Name: TestText
+  m_Name: Instruction1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -406,7 +406,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 171562058}
-  m_Text: Hello World
+  m_Text: Beware, it follows you
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -446,8 +446,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 171562058}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: 1.51625454, y: 20.3498192, z: -184.116669}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.65360928, y: 8.24438953, z: 14.6949463}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

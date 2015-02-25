@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour {
 	public GameObject enemyPrefab; //Used for spawning the player
 
 	private int thisLevel = 1; //Variable to store the current level index
-	private float handicap = 5f; //Variable to store the distance between player and enemy
+	private float handicap = 0f; //Variable to store the distance between player and enemy
 
 	public void Awake() //Initial loading
 	{
