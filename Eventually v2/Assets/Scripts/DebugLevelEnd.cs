@@ -5,9 +5,9 @@ public class DebugLevelEnd : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.name == "Player") { //If the player enters the trigger zone
-			Debug.Log("You win!"); //Print win statement
-			Application.LoadLevel("MainScene"); //Reload level
+		if (collider.gameObject.tag == "Player") {
+						GameObject manager = GameObject.Find ("LevelManager");
+						manager.GetComponent<LevelManager> ().LoadNextLevel ();
 				}
 	}
 }

@@ -5,6 +5,7 @@ public class AIPathfinding : MonoBehaviour {
 
 	public static GameObject target; //A handle to the player for the navmesh agent to chase
 	public NavMeshAgent agent;
+	public LevelManager manager;
 
 	public enum AIStatus //State machine values
 	{
@@ -71,11 +72,6 @@ public class AIPathfinding : MonoBehaviour {
 
 	void Win()
 	{
-		//DEBUG LOGIC, WILL BE REPLACED
-		Debug.Log ("You lose!"); //Print loss statement
-		Application.LoadLevel ("MainScene"); //Reload level
-		/* PLAYERDEATH GETS UPDATED HERE.
-		 * THE GUI WILL INFORM THE PLAYER OF THEIR LOSS
-		 * AND ANY LAST FUNCTIONS WILL BE CALLED BEFORE LEVEL RESET */
+		manager.ReLoadLevel (); //Reload level due to player death
 	}
 }
