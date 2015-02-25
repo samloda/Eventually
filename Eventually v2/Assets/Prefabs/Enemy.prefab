@@ -70,7 +70,7 @@ Camera:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba3be9ddd44eb041ab30cefb5c00a7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   agent: {fileID: 0}
   manager: {fileID: 0}
 --- !u!124 &12400000

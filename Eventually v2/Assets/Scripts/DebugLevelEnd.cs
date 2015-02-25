@@ -7,7 +7,7 @@ public class DebugLevelEnd : MonoBehaviour {
 	{
 		if (collider.gameObject.tag == "Player") {
 						GameObject manager = GameObject.Find ("LevelManager");
-						manager.GetComponent<LevelManager> ().LoadNextLevel ();
+						manager.GetComponent<LevelManager> ().LoadNextLevel (0f);
 				}
 	}
 }

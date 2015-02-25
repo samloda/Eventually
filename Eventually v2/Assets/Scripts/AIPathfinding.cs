@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AIPathfinding : MonoBehaviour {
 
-	public static GameObject target; //A handle to the player for the navmesh agent to chase
+	public GameObject target; //A handle to the player for the navmesh agent to chase
 	public NavMeshAgent agent;
 	public LevelManager manager;
 
@@ -19,8 +19,9 @@ public class AIPathfinding : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (target == null) //conditional statement to make sure gameobject.find is only used once
-						target = GameObject.FindGameObjectWithTag ("Player"); //Set the player handle to target
+		Communicator.enemy = this.gameObject; //Set the comminicator's variable for the enemy
+		target = Communicator.player; //Set the target to the player
+		manager = Communicator.manager; //Set the manager to the level manager script
 		agent = GetComponent<NavMeshAgent> (); //Get a handle to this object's agent
 	}
 	
@@ -72,6 +73,7 @@ public class AIPathfinding : MonoBehaviour {
 
 	void Win()
 	{
+
 		manager.ReLoadLevel (); //Reload level due to player death
 	}
 }
