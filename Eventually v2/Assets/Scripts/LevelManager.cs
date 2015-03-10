@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour {
 		handicap = _handicap;
 		Debug.Log ("You Win! Now on to the next puzzle, hurry!"); //Tell the player they beat the level
 		Application.LoadLevel (++thisLevel); //Load the next level by incrementing 'thislevel'
-		Invoke ("SpawnEnemy", handicap); //Call function to spawn the enemy after a certain time
+		Invoke ("SpawnEnemy", handicap + .1f); //Call function to spawn the enemy after the handicap time plus .1 (this is to make sure the next level has loaded first)
 	}
 	
 	public void ReLoadLevel()
@@ -34,7 +34,6 @@ public class LevelManager : MonoBehaviour {
 	
 	private void SpawnEnemy()
 	{
-		GameObject enemySpawnPoint = GameObject.Find ("EnemySpawn"); //Find the enemy spawn point and save it
-		Instantiate (enemyPrefab, enemySpawnPoint.transform.position, enemySpawnPoint.transform.rotation); //Spawn the enemy at the proper point and store in the enemy variable
+		Instantiate (enemyPrefab, Communicator.enemySpawnPoint.position, Communicator.enemySpawnPoint.rotation); //Spawn the enemy at the proper point and store in the enemy variable
 	}
 }
