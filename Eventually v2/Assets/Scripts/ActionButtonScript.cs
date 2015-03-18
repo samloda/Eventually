@@ -4,12 +4,13 @@ using System.Collections;
 public class ActionButtonScript : MonoBehaviour {
 
 	public bool handOccupied = false; //Track if the player can use things
+	public Transform pickupHandle; //Handle for the empty gameobject pickups are bound to
 
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.E)) { //If the player hits the use key
 						if (handOccupied) { //Check if the hand is occupied
-								this.transform.GetChild (0).GetChild (0).GetComponent<UseableBase> ().Use (this.gameObject); //Call the use function of what is held
+								pickupHandle.GetChild(0).GetComponent<UseableBase> ().Use (this.gameObject); //Call the use function of what is held
 								handOccupied = false;
 						} else { //Otherwise
 								Ray ray = Camera.main.ScreenPointToRay (new Vector3 (Screen.width * 0.5f, Screen.height * 0.5f, 0.0f)); //Declare a ray pointing out from the center of the camera view

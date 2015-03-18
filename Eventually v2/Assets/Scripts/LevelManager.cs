@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour {
 	{
 		Debug.Log ("You Lose! You stayed still too long and it got you!"); //Tell the playe they died from the monster
 		Application.LoadLevel (thisLevel); //Reload the current level
-		Invoke ("SpawnEnemy", handicap); //Call function to spawn the enemy after a certain time
+		Invoke ("SpawnEnemy", handicap + .1f); //Call function to spawn the enemy after a certain time
 	}
 	
 	private void SpawnEnemy()
