@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\PlayerCommunicator.cs" />
      <Compile Include="Assets\Scripts\UseableBase.cs" />
      <Compile Include="Assets\Scripts\UseableObjectPickup.cs" />
+     <None Include="Assets\Shaders\Cloud_Panning.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>C:/Users/Sam/Documents/GitHub/Eventually/Eventually v2/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>

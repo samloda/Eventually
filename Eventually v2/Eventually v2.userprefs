@@ -1,9 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ActionButtonScript.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Shaders\Cloud_Panning.shader">
     <Files>
-      <File FileName="Assets\Scripts\ActionButtonScript.cs" Line="20" Column="22" />
-      <File FileName="Assets\Scripts\HintScript.cs" Line="9" Column="65" />
+      <File FileName="Assets\Shaders\Cloud_Panning.shader" Line="49" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
