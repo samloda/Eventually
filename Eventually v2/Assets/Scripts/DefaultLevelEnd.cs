@@ -9,7 +9,7 @@ public class DefaultLevelEnd : MonoBehaviour {
 			print ("Test");
 			float handicap = 0f; //Create a variable handicap, handicap is how long the next level will wait before spawning the enemy
 			handicap = Vector3.Distance(Communicator.player.transform.position, Communicator.enemy.transform.position); //Calculate distance between player and enemy
-			Communicator.manager.LoadNextLevel (0f); //have the manager load the next level with that as the handicap value
+			Communicator.manager.LoadNextLevel (handicap); //have the manager load the next level with that as the handicap value
 		}
 	}
 }

@@ -6,6 +6,8 @@ public class ActionButtonScript : MonoBehaviour {
 	public bool handOccupied = false; //Track if the player can use things
 	public bool possibleUse = false; //Flag if the player is looking at a usable item
 	public Transform pickupHandle; //Handle for the empty gameobject pickups are bound to
+	public AudioSource mySource; //Audio source for sound effect
+	public AudioClip buttonFeedback; //sound to play when the player uses something
 
 	// Update is called once per frame
 	void Update () {
