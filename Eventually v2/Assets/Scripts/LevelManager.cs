@@ -3,7 +3,11 @@ using System.Collections;
 
 public class LevelManager : MonoBehaviour {
 
+	public AudioSource myLoadSource; //Sound to play when loading the next level
+	public AudioSource myReloadSource; //sound to play when reloading the level
 	public GameObject enemyPrefab; //Used for spawning the player
+	public delegate void SoundAction(AudioSource source); //Event for the manager to read
+	public static event SoundAction SoundEvent;
 
 	private int thisLevel = 1; //Variable to store the current level index
 	private float handicap = 0f; //Variable to store the distance between player and enemy
@@ -19,6 +23,7 @@ public class LevelManager : MonoBehaviour {
 	
 	public void LoadNextLevel(float _handicap)
 	{
+		SoundEvent (myLoadSource); //Play the level shift sound
 		handicap = _handicap;
 		Debug.Log ("You Win! Now on to the next puzzle, hurry!"); //Tell the player they beat the level
 		Application.LoadLevel (++thisLevel); //Load the next level by incrementing 'thislevel'

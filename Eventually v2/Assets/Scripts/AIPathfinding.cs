@@ -4,8 +4,12 @@ using System.Collections;
 public class AIPathfinding : MonoBehaviour {
 
 	public GameObject target; //A handle to the player for the navmesh agent to chase
-	public NavMeshAgent agent;
-	public LevelManager manager;
+	public NavMeshAgent agent; //Agent for pathfinding
+	public LevelManager manager; //The level manager
+	public AudioSource myGrowlSource; //Sound to play when the enemy kills the player
+	public AudioSource myMoveSource; //Sound to play while the snail moves
+	public delegate void SoundAction(AudioSource source); //Event for the manager to read
+	public static event SoundAction SoundEvent;
 
 	public enum AIStatus //State machine values
 	{
@@ -16,9 +20,10 @@ public class AIPathfinding : MonoBehaviour {
 
 	private AIStatus status = AIStatus.Chasing; //Instance of the enum for states
 	private bool hasWon = false; //Boolean to detect if the player has been killed
+	private int stepCoolDown = 0; //Cooldown for playing the steps
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		Communicator.enemy = this.gameObject; //Set the comminicator's variable for the enemy
 		target = Communicator.player; //Set the target to the player
 		manager = Communicator.manager; //Set the manager to the level manager script
@@ -28,6 +33,7 @@ public class AIPathfinding : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		CheckStatus (); //Function to set the ai state
+		MoveSound (); //Function to play a move sound effect periodically
 
 		switch (status) { //Do a switch statement on update based on what status the object is in
 		case AIStatus.Chasing: //If the object status is idle
@@ -37,7 +43,8 @@ public class AIPathfinding : MonoBehaviour {
 			Wait(); //Call the chase function
 			break;
 		case AIStatus.Victory: //If the object status is combative
-			Win(); //Attack the player
+			SoundEvent(myGrowlSource); //Play the growl sound
+			Invoke("Win", myGrowlSource.clip.length); //Attack the player
 			break;
 		}
 	}
@@ -66,14 +73,19 @@ public class AIPathfinding : MonoBehaviour {
 
 	void Wait()
 	{
-		agent.Stop (false); //If the agent needs to wait, call the stop function
-
-		/* AIDIFFICULTY GETS UPDATED HERE. THE AI WILL INCREMENTALLY INCREASE IN POWER */
+		agent.Stop (); //If the agent needs to wait, call the stop function
 	}
 
 	void Win()
 	{
-
 		manager.ReLoadLevel (); //Reload level due to player death
+	}
+
+	void MoveSound()
+	{
+		if (--stepCoolDown <= 0) { //Decriment the step cooldown and check if it is zero
+						stepCoolDown += 20 + Random.Range (-2, 2); //reset cooldown with some variance
+						SoundEvent(myMoveSource); //Call the event to play the sound
+		}
 	}
 }

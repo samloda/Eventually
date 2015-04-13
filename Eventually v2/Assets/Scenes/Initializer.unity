@@ -83,8 +83,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 279146806}
   - 114: {fileID: 279146807}
+  - 114: {fileID: 279146808}
   m_Layer: 0
-  m_Name: LevelManager
+  m_Name: Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,4 +114,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38bef19f437955147ada5ab8480995ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myLoadSource: {fileID: 0}
+  myReloadSource: {fileID: 0}
   enemyPrefab: {fileID: 100000, guid: 2fea9c2157379aa4eb6d34adbcf613d1, type: 2}
+--- !u!114 &279146808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 279146805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10dc9240e9a6f34a9139e1963e20ec1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

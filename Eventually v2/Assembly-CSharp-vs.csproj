@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\MonsterVisionScript.cs" />
      <Compile Include="Assets\Scripts\PlayerCommunicator.cs" />
+     <Compile Include="Assets\Scripts\PlayerSoundScript.cs" />
      <Compile Include="Assets\Scripts\SoundManager.cs" />
      <Compile Include="Assets\Scripts\UseableBase.cs" />
      <Compile Include="Assets\Scripts\UseableObjectPickup.cs" />

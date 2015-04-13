@@ -6,8 +6,10 @@ public class ActionButtonScript : MonoBehaviour {
 	public bool handOccupied = false; //Track if the player can use things
 	public bool possibleUse = false; //Flag if the player is looking at a usable item
 	public Transform pickupHandle; //Handle for the empty gameobject pickups are bound to
-	public AudioSource mySource; //Audio source for sound effect
-	public AudioClip buttonFeedback; //sound to play when the player uses something
+	public AudioSource myActionSource; //Source for the action sound
+	public AudioSource myActionFailSource; //Source for the action fail sound
+	public delegate void SoundAction(AudioSource source); //Event for the manager to read
+	public static event SoundAction SoundEvent;
 
 	// Update is called once per frame
 	void Update () {
@@ -23,14 +25,19 @@ public class ActionButtonScript : MonoBehaviour {
 				else //Otherwise
 						possibleUse = true; //Change the flag to true
 
-		if (Input.GetKeyDown (KeyCode.E) && possibleUse == true) { //If the player hits the use key
-						if (handOccupied) { //Check if the hand is occupied
-								pickupHandle.GetChild (0).GetComponent<UseableObjectPickup> ().Use (this.gameObject); //Call the use function of what is held
-								handOccupied = false;
-						} else { //Otherwise
-								usescript.Use (this.gameObject); //Call the use function
-								if (usescript is UseableObjectPickup) //Check if the object activated was an object to pick up
-										handOccupied = true; //If so, set the hand occupation to true
+		if (Input.GetKeyDown (KeyCode.E)) { //If the player hits the use key
+						if (possibleUse == true) { //And there is a possible object to use
+								SoundEvent (myActionSource); //Play the sound for use
+								if (handOccupied) { //Check if the hand is occupied
+										pickupHandle.GetChild (0).GetComponent<UseableObjectPickup> ().Use (this.gameObject); //Call the use function of what is held
+										handOccupied = false;
+								} else { //Otherwise
+										usescript.Use (this.gameObject); //Call the use function
+										if (usescript is UseableObjectPickup) //Check if the object activated was an object to pick up
+												handOccupied = true; //If so, set the hand occupation to true
+								}
+						} else {
+								SoundEvent(myActionFailSource); //Otherwise, play a sound for a failure
 						}
 				}
 	}
