@@ -1,11 +1,15 @@
-.DS_Store
 Temp/*
-Library/previews/*
-Library/ScriptAssemblies/*
-Library/cache/*
-Library/metadata/*
 Library/*
-!Library/*.asset
 
-*.userprefs
-*.sln
+
+!Library/*.asset
+!Library/AssetImportState
+!Library/AssetVersioning.db
+!Library/BuildPlayer.prefs
+!Library/ScriptMapper
+!Library/assetservercachev3
+!Library/expandedItems
+!Library/guidmapper
+!Library/unity default resources
+!Library/unity editor resources
+!Library/metadata/ 
