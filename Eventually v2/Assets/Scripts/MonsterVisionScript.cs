@@ -6,11 +6,15 @@ public class MonsterVisionScript : MonoBehaviour {
 	public Camera playerCam; //Handle for player camera
 	public Camera monsterCam; //Hadle for monster camera
 	public bool inZone = false; //Boolean to detect if player is in the trigger zone
+	public AudioSource myVisionSource; //Source for the monster vision sound effect
+	public delegate void SoundAction(AudioSource source); //Event for the manager to read
+	public static event SoundAction SoundEvent;
 
 	// Update is called once per frame
 	void Update () {
 		if (inZone) { //If the player is in the trigger zone
 						if (Input.GetKeyDown (KeyCode.M)) { //if they press down the m key
+								SoundEvent(myVisionSource); //Play the non-diagetic sound for 
 								SetCams (); //Set Cameras
 								playerCam.enabled = false; //Set the camera to the monster cam
 								monsterCam.enabled = true;

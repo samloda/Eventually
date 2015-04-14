@@ -14,6 +14,10 @@ public class SoundManager : MonoBehaviour {
 		PlayerSoundScript.SoundEvent += PlaySound;
 		ActionButtonScript.SoundEvent += PlaySound;
 		AIPathfinding.SoundEvent += PlaySound;
+		LevelManager.SoundEvent += PlaySound;
+		LevelManager.SoundStopperEvent += StopAll;
+		MonsterVisionScript.SoundEvent += PlaySpecialSound;
+		MusicPlayerScript.SoundEvent += PlayAmbience;
 	}
 
 	void OnDisable()
@@ -21,6 +25,10 @@ public class SoundManager : MonoBehaviour {
 		PlayerSoundScript.SoundEvent -= PlaySound;
 		ActionButtonScript.SoundEvent -= PlaySound;
 		AIPathfinding.SoundEvent -= PlaySound;
+		LevelManager.SoundEvent -= PlaySound;
+		LevelManager.SoundStopperEvent -= StopAll;
+		MonsterVisionScript.SoundEvent -= PlaySpecialSound;
+		MusicPlayerScript.SoundEvent -= PlayAmbience;
 	}
 
 	void PlaySound(AudioSource source)
@@ -89,5 +97,21 @@ public class SoundManager : MonoBehaviour {
 						}
 				}
 				
+	}
+
+	void StopAll()
+	{
+		if (activeSources.Count != 0)
+						UseList (activeSources, 1);
+		if (ambienceSources.Count != 0)
+						UseList (ambienceSources, 1);
+		if (specialSource != null)
+						specialSource.Stop ();
+
+		activeSources.Clear ();
+		ambienceSources.Clear ();
+		specialSource = null;
+
+		playSounds = true;
 	}
 }

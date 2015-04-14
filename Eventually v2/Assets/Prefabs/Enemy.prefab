@@ -14,8 +14,8 @@ GameObject:
   - 195: {fileID: 19500000}
   - 114: {fileID: 11400000}
   - 54: {fileID: 5400000}
-  - 82: {fileID: 8200000}
   - 82: {fileID: 8200002}
+  - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged

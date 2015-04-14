@@ -33,27 +33,31 @@ public class AIPathfinding : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		CheckStatus (); //Function to set the ai state
-		MoveSound (); //Function to play a move sound effect periodically
 
 		switch (status) { //Do a switch statement on update based on what status the object is in
-		case AIStatus.Chasing: //If the object status is idle
-			Chase (); //Call the idle function
-			break;
-		case AIStatus.Waiting: //If the object status is aggressive
-			Wait(); //Call the chase function
-			break;
-		case AIStatus.Victory: //If the object status is combative
-			SoundEvent(myGrowlSource); //Play the growl sound
-			Invoke("Win", myGrowlSource.clip.length); //Attack the player
-			break;
-		}
+				case AIStatus.Chasing: //If the object status is idle
+						Chase (); //Call the idle function
+						break;
+				case AIStatus.Waiting: //If the object status is aggressive
+						Wait (); //Call the chase function
+						break;
+				case AIStatus.Victory: //If the object status is combative
+						if (myGrowlSource.isPlaying == false) { //If the sound hasn't already begun
+								SoundEvent (myGrowlSource); //Play the growl sound
+								Invoke ("Win", myGrowlSource.clip.length); //Attack the player
+						}
+						break;
+				}
 	}
 
 	void CheckStatus()
 	{
-		agent.SetDestination (target.transform.position); //Handle for the player position as a destination
-		if (Vector3.Distance (this.transform.position, target.transform.position) <= 1f) { //If the enemy gets within 1 unit of the player
-						hasWon = true; //Change its win status to true
+		if (hasWon == false) {
+						agent.SetDestination (target.transform.position); //Handle for the player position as a destination
+						if (Vector3.Distance (this.transform.position, target.transform.position) <= 2f) { //If the enemy gets within 1 unit of the player
+								hasWon = true; //Change its win status to true
+								agent.Stop();
+						}
 				}
 
 		//Conditional statement uses short circuit evaluation to only chase or wait if the player is still alive
@@ -68,6 +72,7 @@ public class AIPathfinding : MonoBehaviour {
 
 	void Chase()
 	{
+		MoveSound (); //Function to play a move sound effect periodically
 		agent.Resume (); //Call the resume function in case the agent has been stopped by wait
 	}
 
@@ -84,7 +89,7 @@ public class AIPathfinding : MonoBehaviour {
 	void MoveSound()
 	{
 		if (--stepCoolDown <= 0) { //Decriment the step cooldown and check if it is zero
-						stepCoolDown += 20 + Random.Range (-2, 2); //reset cooldown with some variance
+						stepCoolDown += 30 + Random.Range (-10, 10); //reset cooldown with some variance
 						SoundEvent(myMoveSource); //Call the event to play the sound
 		}
 	}

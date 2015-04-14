@@ -15,10 +15,13 @@ public class ActionButtonScript : MonoBehaviour {
 	void Update () {
 		Ray ray = Camera.main.ScreenPointToRay (new Vector3 (Screen.width * 0.5f, Screen.height * 0.5f, 0.0f)); //Declare a ray pointing out from the center of the camera view
 		RaycastHit hit; //Raycasthit to get a reference to the targeted object
-		Physics.Raycast (ray, out hit, 10f); //Raycast outward for 10 units
+		bool somethingWasHit = Physics.Raycast (ray, out hit, 10f); //Raycast outward for 10 units
 		//Use inheritance and polymorphism
 		//to get whatever use script is on the hit object
-		UseableBase usescript = hit.collider.gameObject.GetComponent<UseableBase> ();
+		UseableBase usescript = null;
+		if (somethingWasHit) {
+						usescript = hit.collider.gameObject.GetComponent<UseableBase> ();
+				}
 		
 		if (usescript == null && handOccupied == false) //If a use script is not found
 						possibleUse = false; //change the flag to false
@@ -37,7 +40,7 @@ public class ActionButtonScript : MonoBehaviour {
 												handOccupied = true; //If so, set the hand occupation to true
 								}
 						} else {
-								SoundEvent(myActionFailSource); //Otherwise, play a sound for a failure
+								SoundEvent (myActionFailSource); //Otherwise, play a sound for a failure
 						}
 				}
 	}

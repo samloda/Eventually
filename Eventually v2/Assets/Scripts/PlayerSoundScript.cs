@@ -14,7 +14,7 @@ public class PlayerSoundScript : MonoBehaviour {
 	void Update () {
 		//If the player is walking and the step cooldown has reached zero
 		if ((Input.GetAxis ("Horizontal") != 0 || Input.GetAxis ("Vertical") != 0) && --stepCoolDown <= 0) { //stepCoolDown is decrimented right before its check
-						stepCoolDown += 20 + Random.Range(-2, 2); //reset cooldown with some variance
+						stepCoolDown += 20 + Random.Range(-5, 5); //reset cooldown with some variance
 						SoundEvent (myWalkSource); //Call the event and pass in the walk source
 				}
 
