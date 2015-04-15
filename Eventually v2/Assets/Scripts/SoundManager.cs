@@ -50,11 +50,11 @@ public class SoundManager : MonoBehaviour {
 
 	void PlaySpecialSound(AudioSource source)
 	{
-		specialSource = source;
-		specialSource.Play ();
 		playSounds = false;
+		specialSource.Play ();
 		UseList (activeSources, 1);
 		UseList (ambienceSources, 2);
+		specialSource = source;
 	}
 
 	void Update()

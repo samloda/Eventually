@@ -13,7 +13,7 @@ public class ActionButtonScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		Ray ray = Camera.main.ScreenPointToRay (new Vector3 (Screen.width * 0.5f, Screen.height * 0.5f, 0.0f)); //Declare a ray pointing out from the center of the camera view
+		Ray ray = this.camera.ScreenPointToRay (new Vector3 (Screen.width * 0.5f, Screen.height * 0.5f, 0.0f)); //Declare a ray pointing out from the center of the camera view
 		RaycastHit hit; //Raycasthit to get a reference to the targeted object
 		bool somethingWasHit = Physics.Raycast (ray, out hit, 10f); //Raycast outward for 10 units
 		//Use inheritance and polymorphism
