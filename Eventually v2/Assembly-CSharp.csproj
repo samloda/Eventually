@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\Communicator.cs" />
      <Compile Include="Assets\Scripts\DefaultLevelEnd.cs" />
      <Compile Include="Assets\Scripts\EnemySpawnInitializer.cs" />
+     <Compile Include="Assets\Scripts\FinalLevelEnd.cs" />
      <Compile Include="Assets\Scripts\HintScript.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\MonsterVisionScript.cs" />
@@ -60,6 +61,8 @@
      <Compile Include="Assets\Scripts\PlayerCommunicator.cs" />
      <Compile Include="Assets\Scripts\PlayerSoundScript.cs" />
      <Compile Include="Assets\Scripts\SoundManager.cs" />
+     <Compile Include="Assets\Scripts\UIManager.cs" />
+     <Compile Include="Assets\Scripts\UIManagerEndScreen.cs" />
      <Compile Include="Assets\Scripts\UseableBase.cs" />
      <Compile Include="Assets\Scripts\UseableObjectPickup.cs" />
      <None Include="Assets\Shaders\Cloud_Panning.shader" />

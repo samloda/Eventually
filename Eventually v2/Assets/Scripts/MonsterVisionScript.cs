@@ -14,8 +14,8 @@ public class MonsterVisionScript : MonoBehaviour {
 	void Update () {
 		if (inZone) { //If the player is in the trigger zone
 						if (Input.GetKeyDown (KeyCode.M)) { //if they press down the m key
-								SoundEvent(myVisionSource); //Play the non-diagetic sound for 
 								SetCams (); //Set Cameras
+								SoundEvent(myVisionSource); //Play the non-diagetic sound for 
 								playerCam.enabled = false; //Set the camera to the monster cam
 								monsterCam.enabled = true;
 						} else if (Input.GetKeyUp (KeyCode.M)) { //If they lift it up
@@ -28,8 +28,8 @@ public class MonsterVisionScript : MonoBehaviour {
 
 	void SetCams()
 	{
-		playerCam = Communicator.player.transform.GetChild (1).gameObject.GetComponent<Camera> (); //Get the camera from the child object of the player
-		monsterCam = Communicator.enemy.transform.GetChild (0).gameObject.GetComponent<Camera> (); //Get the camera from the child object of the enemy
+		playerCam = Communicator.player.GetComponentInChildren<Camera>(); //Get the camera from the child object of the player
+		monsterCam = Communicator.enemy.GetComponentInChildren<Camera>(); //Get the camera from the child object of the enemy
 	}
 
 	void OnTriggerEnter(Collider other)

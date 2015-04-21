@@ -9,17 +9,18 @@ public class LevelManager : MonoBehaviour {
 	public static event SoundAction SoundEvent;
 	public delegate void SoundStopper(); //Event for the manager to read
 	public static event SoundStopper SoundStopperEvent;
+	public int lastLevel = 0; //Integer to store the last level's index
 
-	private int thisLevel = 1; //Variable to store the current level index
+	private int thisLevel = 0; //Variable to store the current level index
 	private float handicap = 0f; //Variable to store the distance between player and enemy
 
-	public void Awake() //Initial loading
+	public void Start() //Initial loading
 	{
 		DontDestroyOnLoad (this.gameObject); //Make this persistent
 		Communicator.manager = this; //Set a reference to this script
-		Debug.Log ("Let's begin."); //Tell the player they have started the game
+		thisLevel = Application.loadedLevel + 1; //Set thislevel to current level index + 1
 		Application.LoadLevel (thisLevel); //Load the first level
-		Invoke ("SpawnEnemy", handicap); //Call function to spawn the enemy after a certain time
+		Invoke ("SpawnEnemy", handicap + .1f); //Call function to spawn the enemy after a certain time
 	}
 	
 	public void PrepareNextLevel(float _handicap)
@@ -27,7 +28,6 @@ public class LevelManager : MonoBehaviour {
 		SoundStopperEvent (); //Stop all current sounds
 		SoundEvent (myLoadSource); //Play the level shift sound
 		handicap = _handicap;
-		Debug.Log ("You Win! Now on to the next puzzle, hurry!"); //Tell the player they beat the level
 		Invoke ("LoadNextLevel", myLoadSource.clip.length); //Load the next level once the sound has finished
 	}
 
@@ -40,11 +40,24 @@ public class LevelManager : MonoBehaviour {
 	public void ReLoadLevel()
 	{
 		SoundStopperEvent ();
-		Debug.Log ("You Lose! You stayed still too long and it got you!"); //Tell the playe they died from the monster
 		Application.LoadLevel (thisLevel); //Reload the current level
 		Invoke ("SpawnEnemy", handicap + .1f); //Call function to spawn the enemy after a certain time
 	}
-	
+
+	public void PrepareEndGame()
+	{
+		SoundStopperEvent (); //Stop all sounds
+		SoundEvent (myLoadSource); //Play the level shift sound
+		Invoke ("LoadEndGame", myLoadSource.clip.length);
+	}
+
+	public void LoadEndGame()
+	{
+		Application.LoadLevel (lastLevel); //Load the end screen
+		Communicator.manager = null; //Set the manager to null
+		Destroy (this.gameObject); //Destroy the level manager
+	}
+
 	private void SpawnEnemy()
 	{
 		Instantiate (enemyPrefab, Communicator.enemySpawnPoint.position, Communicator.enemySpawnPoint.rotation); //Spawn the enemy at the proper point and store in the enemy variable
