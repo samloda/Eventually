@@ -31,7 +31,7 @@ public class AIPathfinding : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		CheckStatus (); //Function to set the ai state
 
 		switch (status) { //Do a switch statement on update based on what status the object is in
