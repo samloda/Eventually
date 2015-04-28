@@ -21,6 +21,7 @@ public class SoundManager : MonoBehaviour {
 		LevelManager.SoundStopperEvent += StopAll;
 		MonsterVisionScript.SoundEvent += PlaySpecialSound;
 		MusicPlayerScript.SoundEvent += PlayAmbience;
+		PauseScript.SoundPauserEvent += PauseSoundsToggler;
 	}
 
 	void OnDisable()
@@ -32,6 +33,7 @@ public class SoundManager : MonoBehaviour {
 		LevelManager.SoundStopperEvent -= StopAll;
 		MonsterVisionScript.SoundEvent -= PlaySpecialSound;
 		MusicPlayerScript.SoundEvent -= PlayAmbience;
+		PauseScript.SoundPauserEvent -= PauseSoundsToggler;
 	}
 
 	void PlaySound(AudioSource source) //Function plays a sound, takes in an audio source
@@ -120,5 +122,15 @@ public class SoundManager : MonoBehaviour {
 		specialSource = null;
 
 		playSounds = true; //Set playsounds to true in case there was a special sound
+	}
+
+	void PauseSoundsToggler(int whatToDo) //Pause sounds when paused
+	{
+		UseList (ambienceSources, whatToDo);
+		UseList (activeSources, whatToDo);
+		if (whatToDo == 0)
+						playSounds = true;
+				else if (whatToDo == 2)
+						playSounds = false;
 	}
 }

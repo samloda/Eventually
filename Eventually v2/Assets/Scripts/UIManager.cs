@@ -14,14 +14,28 @@ public class UIManager : MonoBehaviour {
 
 	private string main = "main"; //string of the main menu
 	private string options = "options"; //String of the options menu
+	private string controls = "controls"; //string of the controls menu
 
 	private float volume = 1.0f; //Volume for sound effects
 	private float ambienceVolume = 1.0f; //Volume for music
+	private string controlsText; //text to display for controls
 
 	// Use this for initialization
 	void Start () 
 	{
 		menuState = main; //Start the menu on main
+
+		SoundManager.effectsVolume = volume; //Set the soundmanager effects volume
+		SoundManager.ambienceVolume = ambienceVolume; //Set the sound manager ambience volume
+
+		controlsText = "Controls:" + "\n"
+						+ "Arrows or WASD to move" + "\n"
+						+ "E to pick boxes up" + "\n"
+						+ "Left and right click to move what you are holding forward and backward" + "\n"
+						+ "Scroll wheel up and down to move what you are holding up and down" + "\n"
+						+ "M on red circles lets you see through the monster's eyes" + "\n"
+						+ "Escape to pause" + "\n"
+						+ "Press Space To Go Back";
 	}
 
 	private void OnGUI()
@@ -48,6 +62,10 @@ public class UIManager : MonoBehaviour {
 		{
 			WindowRect = GUI.Window(1, WindowRect, optionsFunc, "Options"); //If on the options menu, draw the window and call the options menu function
 		}
+
+		if (menuState == controls) {
+			GUI.Box(new Rect(0, 0, Screen.width, Screen.height), controlsText);
+				}
 	}
 
 	private void menuFunc (int id)
@@ -62,6 +80,10 @@ public class UIManager : MonoBehaviour {
 		{
 			menuState = options; //Which navigates to the options menu
 		}
+
+		if (GUILayout.Button ("Controls")) {
+			menuState = controls;
+				}
 
 		if (GUILayout.Button("Quit Game")) //Have a button to quit the game
 		{
@@ -83,6 +105,15 @@ public class UIManager : MonoBehaviour {
 		if (GUILayout.Button("Back To Main Menu")) //Draw a button to return to main menu
 		{
 			menuState = main; //That sets menustate to main
+		}
+	}
+
+	// Update is called once per frame
+	void Update () 
+	{
+		if (menuState == controls && Input.GetKey(KeyCode.Space)) //If the player is on the credits screen and hits escape
+		{
+			menuState = main; //Set the menustate to main
 		}
 	}
 }

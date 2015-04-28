@@ -27,7 +27,7 @@ public class UIManagerEndScreen : MonoBehaviour {
 		{
 			textToDisplay += CreditsTextLines[x] + " \n "; //Add each entry as a new line
 		}
-		textToDisplay += "Press Esc To Go Back"; //Finish with instruction on how to get back
+		textToDisplay += "Press Space To Go Back"; //Finish with instruction on how to get back
 	}
 	
 	private void OnGUI()
@@ -78,7 +78,7 @@ public class UIManagerEndScreen : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (menuState == credits && Input.GetKey(KeyCode.Escape)) //If the player is on the credits screen and hits escape
+		if (menuState == credits && Input.GetKey(KeyCode.Space)) //If the player is on the credits screen and hits escape
 		{
 			menuState = main; //Set the menustate to main
 		}

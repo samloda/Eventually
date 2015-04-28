@@ -7,6 +7,8 @@ public class PauseScript : MonoBehaviour {
 	public MouseLook cameraControl2;
 	public ActionButtonScript actionButton;
 	public ActionButtonGUIScript actionGUI;
+	public delegate void SoundPauser(int action); //Event for the manager to read
+	public static event SoundPauser SoundPauserEvent;
 
 	private Rect WindowRect = new Rect((Screen.width / 2) - 100, Screen.height / 2, 200, 200); //Size of the main menu
 	
@@ -84,12 +86,14 @@ public class PauseScript : MonoBehaviour {
 						actionButton.enabled = true;
 						actionGUI.enabled = true;
 						Time.timeScale = 1.0f;
+						SoundPauserEvent(0); //Resume the sound
 				} else { //If unpaused
 						cameraControl1.enabled = false; //Pause and disable script
 						cameraControl2.enabled = false;
 						actionButton.enabled = false;
 						actionGUI.enabled = false;
 						Time.timeScale = 0.0f;
+						SoundPauserEvent(2); //Pauses the sound
 				}
 
 		paused = !paused; //Reset bool
