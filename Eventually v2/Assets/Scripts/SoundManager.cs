@@ -80,13 +80,21 @@ public class SoundManager : MonoBehaviour {
 										activeSources.Remove (inactiveSource); //Remove it from the active sources
 								}
 						}
-				} else { //If the manager should not be playing sounds
+				} else if (specialSource != null) { //If the manager should not be playing sounds
 						if (specialSource.isPlaying == false) { //Check if the special source is finished playing
 								specialSource = null; //If so, set the special source in the manager to null
 								playSounds = true; //And play sounds again
 								UseList(ambienceSources, 0); //And resume playing all the ambience sources
 						}
 				}
+
+		foreach (AudioSource activeSource in activeSources) {
+			activeSource.volume = effectsVolume;
+		}
+			
+		foreach (AudioSource ambienceSource in ambienceSources) {
+			ambienceSource.volume = ambienceVolume;
+		}
 	}
 
 	void UseList(List<AudioSource> sources, int play) //Function that can pause stop or play a list of audio sources
