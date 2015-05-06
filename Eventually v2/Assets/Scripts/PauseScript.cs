@@ -25,6 +25,8 @@ public class PauseScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		Screen.showCursor = false; //Lock the mouse when unpaused
+		Screen.lockCursor = true;
 		menuState = main; //Start the menu on main
 	}
 	
@@ -65,8 +67,10 @@ public class PauseScript : MonoBehaviour {
 	{
 		GUILayout.Box("Volume"); //Draw the box for the menu
 		GUILayout.Label ("Effects"); //Label effects for effects volume
+		volume = SoundManager.effectsVolume;
 		volume = GUILayout.HorizontalSlider(volume, 0.0f, 1.0f); //Horizontal slider sets the volume
 		GUILayout.Label ("Music"); //Label music for music volume
+		ambienceVolume = SoundManager.ambienceVolume;
 		ambienceVolume = GUILayout.HorizontalSlider(ambienceVolume, 0.0f, 1.0f); //Horizontal slider sets the music volume
 		
 		SoundManager.effectsVolume = volume; //Set the soundmanager effects volume
@@ -85,15 +89,19 @@ public class PauseScript : MonoBehaviour {
 						cameraControl2.enabled = true;
 						actionButton.enabled = true;
 						actionGUI.enabled = true;
+						Screen.showCursor = false; //Lock the mouse when unpaused
+						Screen.lockCursor = true;
 						Time.timeScale = 1.0f;
-						SoundPauserEvent(0); //Resume the sound
+						SoundPauserEvent (0); //Resume the sound
 				} else { //If unpaused
 						cameraControl1.enabled = false; //Pause and disable script
 						cameraControl2.enabled = false;
 						actionButton.enabled = false;
 						actionGUI.enabled = false;
+						Screen.showCursor = true; //Unlock the mouse when paused
+						Screen.lockCursor = false;
 						Time.timeScale = 0.0f;
-						SoundPauserEvent(2); //Pauses the sound
+						SoundPauserEvent (2); //Pauses the sound
 				}
 
 		paused = !paused; //Reset bool

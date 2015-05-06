@@ -39,7 +39,8 @@ public class UIManagerEndScreen : MonoBehaviour {
 		
 		if (Logo != null)
 		{
-			GUI.DrawTexture(new Rect((Screen.width / 2) - 100, 30, 200, 200), Logo); //Display the logo texture
+			GUI.DrawTexture(new Rect((Screen.width / 2) - 300, Screen.height / 2, 200, 200), Logo); //Draw the logo
+			GUI.DrawTexture(new Rect((Screen.width / 2) + 100, Screen.height / 2, 200, 200), Logo); //Draw the logo again
 		}
 		
 		GUI.skin = MyGUISkin; //Set the gui skin

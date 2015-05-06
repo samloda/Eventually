@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class SoundManager : MonoBehaviour {
 
-	public static float effectsVolume;
-	public static float ambienceVolume;
+	public static float effectsVolume; //Volume for all the sound effects
+	public static float ambienceVolume; //volume for all the ambience
 
 	private List<AudioSource> activeSources = new List<AudioSource>(); //List of the sources currently playing a sound effect
 	private List<AudioSource> ambienceSources = new List<AudioSource>(); //List of the sources playing ambient sound

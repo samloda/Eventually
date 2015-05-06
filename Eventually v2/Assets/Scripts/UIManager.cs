@@ -16,8 +16,8 @@ public class UIManager : MonoBehaviour {
 	private string options = "options"; //String of the options menu
 	private string controls = "controls"; //string of the controls menu
 
-	private float volume = 1.0f; //Volume for sound effects
-	private float ambienceVolume = 1.0f; //Volume for music
+	private float volume; //Volume for sound effects
+	private float ambienceVolume; //Volume for music
 	private string controlsText; //text to display for controls
 
 	// Use this for initialization
@@ -27,6 +27,11 @@ public class UIManager : MonoBehaviour {
 
 		SoundManager.effectsVolume = volume; //Set the soundmanager effects volume
 		SoundManager.ambienceVolume = ambienceVolume; //Set the sound manager ambience volume
+
+		if (SoundManager.effectsVolume == 0f && SoundManager.ambienceVolume == 0f) {
+						SoundManager.effectsVolume = 1f;
+						SoundManager.ambienceVolume = 1f;
+				}
 
 		controlsText = "Controls:" + "\n"
 						+ "Arrows or WASD to move" + "\n"
@@ -47,7 +52,8 @@ public class UIManager : MonoBehaviour {
 
 		if (Logo != null)
 		{
-			GUI.DrawTexture(new Rect((Screen.width / 2) - 100, 30, 200, 200), Logo); //Draw the logo
+			GUI.DrawTexture(new Rect((Screen.width / 2) - 300, Screen.height / 2, 200, 200), Logo); //Draw the logo
+			GUI.DrawTexture(new Rect((Screen.width / 2) + 100, Screen.height / 2, 200, 200), Logo); //Draw the logo again
 		}
 
 		GUI.skin = MyGUISkin; //Set the guiskin to what was fed in
@@ -95,8 +101,10 @@ public class UIManager : MonoBehaviour {
 	{
 		GUILayout.Box("Volume"); //Draw the box for the menu
 		GUILayout.Label ("Effects"); //Label effects for effects volume
+		volume = SoundManager.effectsVolume; //Sets the starting value for the volume
 		volume = GUILayout.HorizontalSlider(volume, 0.0f, 1.0f); //Horizontal slider sets the volume
 		GUILayout.Label ("Music"); //Label music for music volume
+		ambienceVolume = SoundManager.ambienceVolume; //Sets the starting value for the volume
 		ambienceVolume = GUILayout.HorizontalSlider(ambienceVolume, 0.0f, 1.0f); //Horizontal slider sets the music volume
 
 		SoundManager.effectsVolume = volume; //Set the soundmanager effects volume
