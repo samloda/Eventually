@@ -39,8 +39,11 @@ public class UIManager : MonoBehaviour {
 						+ "Left and right click to move what you are holding forward and backward" + "\n"
 						+ "Scroll wheel up and down to move what you are holding up and down" + "\n"
 						+ "M on red circles lets you see through the monster's eyes" + "\n"
-						+ "Escape to pause" + "\n"
+						+ "P to pause" + "\n"
 						+ "Press Space To Go Back";
+
+		Screen.lockCursor = false;
+		Screen.showCursor = true;
 	}
 
 	private void OnGUI()

@@ -90,16 +90,19 @@ public class PauseScript : MonoBehaviour {
 						actionButton.enabled = true;
 						actionGUI.enabled = true;
 						Screen.showCursor = false; //Lock the mouse when unpaused
-						Screen.lockCursor = true;
+						if (Screen.lockCursor == false)
+								Screen.lockCursor = true;
 						Time.timeScale = 1.0f;
 						SoundPauserEvent (0); //Resume the sound
+						menuState = main;
 				} else { //If unpaused
 						cameraControl1.enabled = false; //Pause and disable script
 						cameraControl2.enabled = false;
 						actionButton.enabled = false;
 						actionGUI.enabled = false;
 						Screen.showCursor = true; //Unlock the mouse when paused
-						Screen.lockCursor = false;
+						if (Screen.lockCursor == true)
+								Screen.lockCursor = false;
 						Time.timeScale = 0.0f;
 						SoundPauserEvent (2); //Pauses the sound
 				}
@@ -109,7 +112,7 @@ public class PauseScript : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.GetKeyDown (KeyCode.Escape)) //Toggle pause on escape
+		if (Input.GetKeyDown (KeyCode.P)) //Toggle pause on escape
 						PauseToggle ();
 	}
 }

@@ -28,6 +28,9 @@ public class UIManagerEndScreen : MonoBehaviour {
 			textToDisplay += CreditsTextLines[x] + " \n "; //Add each entry as a new line
 		}
 		textToDisplay += "Press Space To Go Back"; //Finish with instruction on how to get back
+
+		Screen.lockCursor = false;
+		Screen.showCursor = true;
 	}
 	
 	private void OnGUI()
